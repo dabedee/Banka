@@ -8,10 +8,13 @@ namespace Banka
 {
      class BasvuruManager
     {
-        public void BasvuruYap(IKrediManager krediManager,ILoggerService loggerService) // method injection // construcotr injection
+        public void BasvuruYap(IKrediManager krediManager,List<ILoggerService> loggerServices) // method injection // construcotr injection
         {
             krediManager.Hesapla();
-            loggerService.Log();
+            foreach (var loggerService in loggerServices)
+            {
+                loggerService.Log();
+            }
         }
         public void KrediOnBilgilendirmesiYap(List<IKrediManager>krediler)
         {
